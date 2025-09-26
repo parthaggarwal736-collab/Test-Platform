@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Class 10 Quiz Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Fullscreen video background */
+    #background-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      opacity: 0.15;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+    /* Overlay for contrast */
+    .content-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+    /* Dark mode toggle fixed container */
+    .dark-mode-toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline id="background-video">
+    <source src="videoplayback.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Overlay over video for contrast -->
+  <div class="content-overlay"></div>
+
+  <!-- Dark Mode Toggle UI -->
+  <div class="dark-mode-toggle-container">
+    <div class="modern-switch-wrapper">
+      <input type="checkbox" id="dark-mode-switch" class="modern-checkbox" />
+      <label for="dark-mode-switch" class="modern-switch">
+        <span class="switch-track">
+          <span class="switch-thumb">
+            <span class="thumb-icon">🌙</span>
+          </span>
+          <span class="track-icon left">☀️</span>
+          <span class="track-icon right">🌙</span>
+        </span>
+        <span class="switch-text">Dark Theme</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Main Menu -->
+  <div id="main-menu">
+    <div class="menu-tab">
+      <div class="menu-header" onclick="toggleMenu('tests')">Select Test</div>
+      <div class="menu-content" id="content-tests"></div>
+    </div>
+    <div class="menu-tab">
+      <div class="menu-header" onclick="toggleMenu('history')">History</div>
+      <div class="menu-content" id="content-history"></div>
+    </div>
+    <div class="menu-tab">
+      <div class="menu-header" onclick="toggleMenu('sheets')">Test Sheets</div>
+      <div class="menu-content" id="content-sheets"></div>
+    </div>
+  </div>
+
+  <!-- Quiz Container -->
+  <div id="quiz-container" style="display:none;">
+    <div class="header-bar">
+      <span id="test-name">Test Name</span>
+      <div class="timer" id="timer">00:20:00</div>
+      <button class="header-btn" id="cancel-btn">Cancel</button>
+      <button class="header-btn" id="submit-btn">Submit</button>
+    </div>
+    <div class="main-wrapper">
+      <div class="question-section">
+        <div id="question-number">Question No. 1</div>
+        <div id="question-text"></div>
+        <div id="marks"></div>
+        <div id="options-list"></div>
+        <button id="report-btn">Report this question</button>
+        <button id="review-btn">Mark for Review</button>
+        <button id="next-btn">Save And Next</button>
+      </div>
+      <div class="side-panel">
+        <div class="question-palette" id="question-palette"></div>
+        <div class="legend">
+          <span class="legend-item legend-notanswered"></span> Not Answered
+          <span class="legend-item legend-answered"></span> Answered
+          <span class="legend-item legend-marked"></span> Marked for Review
+          <span class="legend-item legend-notvisited"></span> Not Visited
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
